@@ -4,10 +4,8 @@
 <%- include('head', { title:'新增分類 « enter3017sky Blog' }); %>
 
 <body>
-<!-- 首頁的效果 -->
-<div class="container-fluid">
-
-    <%- include('navbar'); %>
+<%- include('navbar'); %>
+<div class="container">
 
     <header class="jumbotron text-center bg-white">
 
@@ -21,7 +19,7 @@
         <% } %>
 
     </header>
-    <div class="box_shadow col-sm-8 col-md-6 mx-auto p-3">
+    <div class="box_shadow col-md-10 col-xl-8 mx-auto p-3 mb-5">
         <form method="POST" action="/category">
             <div class="form-group">
                 <label for="name"><h4>分類名稱:</h4></label>

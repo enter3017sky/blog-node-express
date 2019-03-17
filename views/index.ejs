@@ -26,14 +26,14 @@
         <!-- 顯示文章 -->
         <% for(var i = 0; i < posts.length; i++) { %>
             <div class='post__container'>
-                <article class='card-body col-md-8 col-xl-7 mx-auto post__body'>
+                <article class='card-body col-md-10 col-xl-8 mx-auto post__body'>
                     <div class='mb-3'><span class='post__time'><%= posts[i].created_at %></span></div>
                     <div class='post__title'>
                         <h2><a href='/posts/<%=posts[i].id%>' class='text-dark post__link'><%= posts[i].title %></a></h2>
                     </div>
                     <div class='post__content'><%- posts[i].content %></div>
                 </article>
-                <footer class='col-md-8 col-xl-7 mt-4 pl-2 mx-auto'>
+                <footer class='col-md-10 col-xl-8 mt-4 pl-2 mx-auto'>
                     <p>
                         <a href="/posts/<%=posts[i].id%>" class='more__link'>
                             READ MORE
