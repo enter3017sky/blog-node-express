@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('head', { title:'新增分類 « enter3017sky Blog' }); %>
+
+<body>
+<!-- 首頁的效果 -->
+<div class="container-fluid">
+
+    <%- include('navbar'); %>
+
+    <header class="jumbotron text-center bg-white">
+
+        <%- `<h1>${title}</h1>` %>
+        <% if(user) { %>
+
+            <button type='button' class='badge btn-outline-secondary mr-1'>
+                <%= user %> 登入中
+            </button>
+
+        <% } %>
+
+    </header>
+    <div class="box_shadow col-sm-8 col-md-6 mx-auto p-3">
+        <form method="POST" action="/category">
+            <div class="form-group">
+                <label for="name"><h4>分類名稱:</h4></label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="添加一個感興趣的事物吧！">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-outline-dark" value="Create New Tag">
+            </div>
+        </form>
+        <hr>
+        <div class='form-group'>
+            <ul class="list-group list-group-flush">
+                <li class='list-group-item list-group-item-action'>
+                    <h5>現有的分類</h5>
+
+                    <% for(let i = 0, max = tags.length; i < max; i ++) { %>
+                        <button type='button' class='btn btn-sm btn-outline-info mr-2 mb-1'><%= tags[i].name %></button>
+                    <% } %>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+<!--  -->
+</body>
+</html>

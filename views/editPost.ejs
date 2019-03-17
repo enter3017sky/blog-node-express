@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<%- include('head', { title: '編輯文章 « enter3017sky Blog' }); %>
+
+<body>
+<%- include('navbar') %>
+<div class="container">
+    <header class="jumbotron text-center bg-white">
+
+        <%- `<h1>${title}</h1>` %>
+        <% if(user) { %>
+
+            <button type='button' class='badge btn-outline-secondary mr-1'>
+                <%= user %> 登入中
+            </button>
+
+        <% } %>
+
+    </header>
+    
+    <div class="box_shadow col-md-4 col-md-8 mx-auto p-4 mb-5">
+        <form method="POST" action="/posts/<%= postData.id %>/edit">
+            <div class="form-group">
+                <label for="title">文章標題：</label>
+                <input type="text" class="form-control" name="title" id="title" value="<%= postData.title %>" />
+            </div>
+            <div class="form-group">
+                <label for="content">文章內容：</label>
+                <textarea class="form-control" id="content" name="content" rows="8"><%- postData.content %></textarea>
+            </div>
+            <div class="form-group">文章分類：
+
+
+            <% for(let tag of allTags) { %>
+            
+            <% let check = _.inArray(tag.id, checkedTagArray) ? 'checked':''; %>
+
+                <div class='form-check'>
+                    <input name='category_id[]' class='form-check-input' type='checkbox' value='<%= tag.id %>' id='check_<%= tag.id %>' <%= check %> />
+
+                    <label class='form-check-label' for='check_<%= tag.id %>'><%= tag.name %></label>
+                </div>
+
+            <% } %>
+
+            </div>
+            <input type="hidden" name="id" value="<%= postData.id %>">
+            <div class="btn-toolbar justify-content-between">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-secondary btn__draft <%- postData.draft ?'':'active'; %>">
+                        <input type="radio" name="draft" autocomplete="off" value="0" <%- postData.draft ? '':'checked'; %> />發佈
+                    </label>
+                    <label class="btn btn-outline-secondary btn__draft <%- postData.draft?'active':''; %>">
+                        <input type="radio" name="draft" autocomplete="off" value="1" <%- postData.draft ? 'checked':''; %> />草稿
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-outline-dark" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+</body>
+</html>
+

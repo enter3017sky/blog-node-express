@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+    <%- include('head', { title: 'About Me « enter3017sky Blog' }); %>
+
+<body>
+<div class="container-fluid">
+
+    <%- include('navbar'); %>
+
+<header class="jumbotron text-center bg-white about">
+
+    <%- `<h1>${title}</h1>` %>
+
+</header>
+<div class="post__container">
+    <article class="card-body col-md-7 mx-auto">
+        <div class="content">
+            <p class="about__text">
+
+               <%- aboutTextInfo %>
+
+            </p>
+        </div>
+    </div>
+
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+</body>
+</html>

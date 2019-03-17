@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<%- include('head', { title: 'Archive « enter3017sky Blog' }); %>
+
+<body>
+<%- include('navbar'); %>
+<div class="container">
+    <header class="jumbotron text-center bg-white">
+
+        <%- `<h1>${title}</h1>` %>
+        <% if(user) { %>
+
+            <button type='button' class='badge btn-outline-secondary mr-1'>
+                <%= user %> 登入中
+            </button>
+
+        <% } %>
+
+    </header>
+        <div class="box_shadow col-md-10 mx-auto p-3">
+            <div class='list-group list-group-flush'>
+
+            <% for(var i = 0; i < posts.length; i++) { %>
+
+                <div class='list-group-item  list-group-item-action d-flex justify-content-between'>
+                    <a href='/posts/<%= posts[i].id %>' class='text-dark truncate'>
+                        <div class='d-flex flex-row'>
+                            <time class='datetime mr-3'><%= posts[i].created_at %></time>
+
+                            <%- posts[i].draft ? "<span class='badge badge-secondary draft'>Draft</span>" : '' %>
+
+                            <h3 class='truncate'><%= posts[i].title %></h3>
+                        </div>
+                    </a>
+                    <div class='text-right btn_group'>
+                        <a href='/posts/<%= posts[i].id %>/edit' class='badge btn btn-outline-success' role='button'>編輯</a>
+                        <a href='/posts/<%= posts[i].id %>/delete' class='badge btn btn-outline-danger' role='button'>刪除</a>
+                    </div>
+                </div>
+
+            <% } %>
+
+        </div>
+    </div>
+
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+</body>
+</html>

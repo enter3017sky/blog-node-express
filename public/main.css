@@ -1,0 +1,171 @@
+
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.showBgPic {
+  background: url('./bg.jpg') no-repeat center;
+  background-attachment: fixed;
+  padding: 10rem;
+}
+
+.about {
+  background: url('./bg.jpg') no-repeat center;
+  background-attachment: fixed;
+  padding: 5rem;
+}
+
+.navbar {
+  box-shadow: 0px 1px 15px -5px rgba(0,0,0,0.8);
+  margin: .5rem;
+}
+
+header > h1 {
+  color: gray;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 3rem; 
+}
+
+header > h2 {
+  color: gray;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.post__container:first-of-type {
+  border-top: 1px solid rgb(234, 234, 234);
+}
+
+.post__container {
+  border-bottom: 1px solid rgb(234, 234, 234);
+  padding: 30px 0px 30px;
+  transition: background 200ms ease 0s;
+}
+.post__container:hover {
+  background: #f8f9fa;
+}
+.container-fluid {
+  padding: 0;
+}
+.navbar {
+  z-index: 9999;
+
+}
+.jumbotron {
+  margin-bottom: 0px;
+}
+
+article > .post__content > p {
+  white-space: pre-line;
+}
+/* .post__title {
+  margin-top: 20px;
+} */
+.post__time {
+  color: rgb(153, 153, 153);
+  font-size: 12px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.post__title {
+  margin-bottom: 2rem;
+}
+
+.post__body {
+  max-height: 650px;
+  overflow: hidden;
+}
+
+.box_shadow {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.more__link {
+  padding: .4rem .8rem;
+  margin-left: .8rem;
+  background-color: rgb(235, 235, 235);
+  color: #666;
+  transition: background-color 0.5s;
+  border-radius: .2rem;
+}
+.more__link:hover {
+  text-decoration: none;
+  background: #0181eb;
+  text-shadow: none;
+  color: #f8f8f8;
+}
+
+.datetime {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  color: #aaa;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.04);
+  padding: 16px;
+}
+
+.draft {
+  display: inline-table;
+  margin-right: 5px;
+}
+
+input[type=submit] {
+  padding: 0 2rem;
+}
+
+.btn__draft:active {
+  border-bottom-color: rgb(108, 117, 125);
+}
+
+.search__result {
+  color: rgb(89, 89, 89);
+}
+
+/* 截短按鈕內的文字，並且靠左 */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+/* 清除 hover a 時的底線 */
+a:hover {
+  text-decoration: none;
+}
+
+mark {
+  padding: 1px 2px;
+  background-color: gold!important;
+}
+
+/* 991px 以下 */
+@media screen and (max-width: 991px) {
+  .btn_group {
+    display: flex;
+    flex-direction: column;
+    margin-left: .5em;
+  }
+  .btn_group > :first-child {
+    margin-bottom: .25em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .jumbotron {
+    padding: 64px 0;
+  }
+  header > h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 575.98px) {
+  .jumbotron {
+    padding: 64px 0;
+  }
+  header > h1 {
+    font-size: 1.5rem;
+  }
+}

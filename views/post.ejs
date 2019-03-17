@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<%- include('head', { title: `${title} « enter3017sky Blog` }); %>
+
+<body>
+<div class="container-fluid">
+
+<%- include('navbar'); %>
+
+<header class="jumbotron text-center bg-white">
+
+    <%- `<h2>${title}</h2>` %>
+    <div>
+        <span>
+        
+        <% for(let category of categories) { %>
+
+        <button type='button' class='badge btn-outline-secondary mr-1'><%= category.name %></button>
+
+        <% } %>
+
+        </span>
+    </div>
+</header>
+    <div class='post__container'>
+        <article class='card-body col-md-7 mx-auto'>
+            <div class='mb-3'>
+                <span class='post__time'>
+
+                    <%= time %>
+                    <% if(user){ %>
+                    <a href='/posts/<%= id %>/edit' class='btn btn-outline-success btn-sm ml-3' role='button'>Edit</a>
+                    <% } %>
+                </span>
+
+                <% if(postState) { %>
+                    <span class='badge badge-secondary draft ml-4'>Draft</span>
+                <% } %>
+
+            </div>
+            <div class='post__content'>
+                <!-- 顯示文章內容 -->
+                <%- content %>
+
+            </div>
+
+            <!-- Comments -->
+
+            <div class="card mt-5">
+            
+                <% for(let i = 0, max = comments.length; i < max; i++) { %>
+            
+                <div class='card m-2'>
+                    <div class='card-header d-flex'>
+                        <h5 class='card-title'><%= comments[i].name %></h5>
+                        <span class='post__time ml-4 pt-1'><%= comments[i].created_at %></span>
+                    </div>
+                    <input type='hidden' name='comment_id' value='<%= comments[i].id %>'>
+                    <div class='card-body'>
+                        <p class='card-text'><%= comments[i].content %></p>
+                    </div>
+                </div>
+
+                <% } %>
+
+                <!-- Username Or Guest -->
+
+                <div class="" id="headingThree">
+                    <button class="btn btn-link collapsed text-dark btn-block" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <!-- <h5 class="mb-0"> -->
+                            <strong>Comments</strong>
+                        <!-- </h5> -->
+                    </button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <form method="POST" action="/comments">
+
+                    
+                    <% if(user || comment){ %>
+                    <% checkUser = (user || comment) ? "<a role='button' href='/logout' class='btn btn-outline-secondary'>Log out</a>":'' %>
+                    
+                        <div class='card m-3'>
+                            <div class='card-header d-flex justify-content-between'>
+                                <h5 class='card-title'><%= user || comment %></h5>
+                                <input type='hidden' name='name' value='<%= user %>' />
+                                <%- checkUser %>
+                            </div>
+                            <div class='card-body'>
+                                <label for='content'>留言內容</label>
+                                <textarea class='form-control' id='content' name='content' rows='5' placeholder='想說些什麼呢？'></textarea>
+                                <input type='hidden' name='article_id' value='<%= id %>' />
+                                <input type='submit' class='btn btn-outline-dark mt-3' />
+                            </div>
+                        </div>
+
+                    <% } else { %>
+
+                        <div class='card-body'>
+                            <div class='form-group'>
+                                <label for='name'>暱稱</label>
+                                <input type='text' class='form-control' name='name' id='name' placeholder='訪客名稱' />
+                            </div>
+                            <div class='form-group'>
+                                <label for='content'>留言內容</label>
+                                <textarea class='form-control' id='content' name='content' rows='5' placeholder='想說些什麼呢？'></textarea>
+                            </div>
+                            <div class='form-group'>
+                                <input type='hidden' name='article_id' value='<%= id %>' />
+                                <input type='submit' class='btn btn-outline-dark' />
+                            </div>
+                        </div>
+
+                    <% } %>
+
+                    </form>
+                </div>
+            </div>
+        </article>
+    </div> 
+
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+</body>
+</html>

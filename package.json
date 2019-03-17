@@ -1,0 +1,29 @@
+{
+  "name": "Week11-hw1-express-blog",
+  "version": "1.0.0",
+  "description": "Week11-hw1-express-blog",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.4",
+    "debug": "^4.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "jquery": "^3.3.1",
+    "marked": "^0.6.1",
+    "moment": "^2.24.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.18.10",
+    "prismjs": "^1.15.0",
+    "sequelize": "^4.42.0",
+    "sequelize-auto": "^0.4.29",
+    "stylus": "^0.54.5"
+  },
+  "repository": "https://github.com/Lidemy/mentor-program-2nd-enter3017sky/tree/master/homeworks/week11/hw1",
+  "author": "enter3017sky <enter3017sky@gmail.com>"
+}

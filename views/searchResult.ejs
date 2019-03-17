@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<%- include('head'); %>
+
+</head>
+<body>
+<!-- 首頁的效果 -->
+<div class="container-fluid">
+
+    <%- include('navbar'); %>
+
+    <header class="jumbotron text-center bg-white showBgPic">
+
+        <%- `<h1>${title}</h1>` %>
+
+        <% if(user) { %>
+            <button type='button' class='badge btn-outline-secondary mr-1'>
+                <%= user %> 登入中
+            </button>
+        <% } %>
+
+    </header>
+
+        <% if(!posts) { %>
+
+            <div class='post__container'>
+                <div class='post__title text-center'>
+                    <p class='search__result'>Sorry, no posts matched your criteria.</p>
+                    <p class='search__result'>
+                    Your search for <strong>“ <%- keywords %> ”</strong> matches <strong>0</strong> results.</p>
+                </div>
+            </div>
+
+        <% } else { %> 
+
+            <div class='post__container text-center'>
+                <p class='search__result'>Your search for <strong>“ <%- keywords %> ”</strong> matches <strong><%- count %></strong> results:</p>
+            </div>
+
+        <% } %> 
+
+        <!-- 顯示文章 -->
+        <% for(var i = 0; i < posts.length; i++) { %>
+            <div class='post__container'>
+                <article class='card-body col-md-7 mx-auto post__body'>
+                    <div class='mb-3'><span class='post__time'><%= posts[i].created_at %></span></div>
+                    <div class='post__title'>
+                        <h2><a href='/posts/<%=posts[i].id%>' class='text-dark post__link'><%= posts[i].title %></a></h2>
+                    </div>
+                    <div class='post__content'><%- posts[i].content %></div>
+                </article>
+                <footer class='col-md-7 mt-4 pl-2 mx-auto'>
+                    <p>
+                        <a href="/posts/<%=posts[i].id%>" class='more__link'>
+                            READ MORE
+                        </a>
+                    </p>
+                </footer>
+            </div>
+        <% } %>
+    
+    <%- include('footer', { footerText: 'Copyright © 2019 - enter3017sky' })%>
+
+</div>
+</body>
+</html>

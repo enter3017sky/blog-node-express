@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<%- include('head'); %>
+
+    <!--
+        <?php 
+            $web_title = 'Archive « enter3017sky Blog';
+            include_once './inc/head.php'; 
+        ?>
+    -->
+<body>
+<%- include('navbar'); %>
+<div class="container">
+    <header class="jumbotron text-center bg-white">
+
+        <%- `<h1>${title}</h1>` %>
+        <% if(user) { %>
+            <button type='button' class='badge btn-outline-secondary mr-1'>
+                <%= user %> 登入中
+            </button>
+        <% } %>
+
+    </header>
+
+
+    <div class="box_shadow col-md-4 col-md-8 mx-auto p-4 mb-5">
+        <form method="POST" action="/posts">
+            <div class="form-group">
+                <label for="title">文章標題：</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="取個好標題吧！" />
+            </div>
+            <div class="form-group">
+                <label for="content">文章內容：</label>
+                <textarea class="form-control" id="content" name="content" rows="8"  placeholder="想說些什麼呢？" ></textarea>
+            </div>
+            <div class='form-group'>文章分類：
+
+            <% for(let i = 0, max = tags.length; i < max; i++) { %>
+
+                <div class='form-check'>
+                    <input name='category_id' class='form-check-input' type='checkbox' value='<%= tags[i].id %>' id='check_<%= tags[i].id %>'/>
+                    <label class='form-check-label' for='check_<%= tags[i].id %>'><%= tags[i].name %></label>
+                </div>
+
+            <% } %>
+
+            </div>
+            <div class="btn-toolbar justify-content-between">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-secondary btn__draft">
+                        <input type="radio" name="draft" value="0">發佈
+                    </label>
+                    <label class="btn btn-outline-secondary btn__draft active">
+                        <input type="radio" name="draft" value="1" checked>草稿
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <input type="submit" class="btn btn-outline-dark" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer class="blog__footer text-center m-3">
+        <p>Copyright © 2019 - enter3017sky</p>
+    </footer>
+</div>
+<!--  -->
+</body>
+</html>
