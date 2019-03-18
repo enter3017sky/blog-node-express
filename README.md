@@ -1,10 +1,8 @@
 # enter3017sky Express Blog
 
-> http://blog.enter3017sky.tw/
-
 用 Express(Node.js) 實作個人 Blog ，藉此熟悉後端操作。
 
-![Imgur](https://i.imgur.com/2K6nDsF.gif)
+![image](https://raw.githubusercontent.com/enter3017sky/mentor-program-2nd-blog/master/picture/nodeblog.gif)
 
 ### Blog 結構
 
@@ -15,11 +13,7 @@
     |       |
     |       *- 選擇某篇文章
     |                 |
-<<<<<<< HEAD
-    |                 *- 訪客評論功能
-=======
     |                 *- 訪客評論功能、訪客登出
->>>>>>> 6b2398ee3b281477759956a7b346854f44453f2c
     *- Categories - 顯示所有分類以及文章數量
     |       |
     |       *- 選擇某一分類的文章
@@ -49,16 +43,10 @@
 
 - 可使用 markdown 撰寫文章。
 - 單一文章選擇多項分類。
-- 可設定分佈或草稿的狀態。
-<<<<<<< HEAD
-- 使用者透過 session 機制登入。
-- 訪客透過 session 機制儲存暱稱，可在文章留下評論或留言。
-- 密碼經過 hash 處理。
-- Blog 文章搜尋。
-=======
+- 可設定文章發佈或草稿的狀態。
 - 使用者透過 session 機制登入，密碼經過 hash 處理。
 - 訪客可在文章底下留言，透過 session 紀錄暱稱。
->>>>>>> 6b2398ee3b281477759956a7b346854f44453f2c
+- 可搜尋文章。
 
 ### 工具
 
