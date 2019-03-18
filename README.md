@@ -1,10 +1,8 @@
 # enter3017sky Express Blog
 
-> http://blog.enter3017sky.tw/
-
 用 Express(Node.js) 實作個人 Blog ，藉此熟悉後端操作。
 
-![Imgur](https://i.imgur.com/2K6nDsF.gif)
+![image](https://raw.githubusercontent.com/enter3017sky/mentor-program-2nd-blog/master/picture/nodeblog.gif)
 
 ### Blog 結構
 
