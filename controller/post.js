@@ -274,25 +274,28 @@ module.exports = {
     },
 
     /** 處理搜尋文章的行為 */
-
     searchPost: function(req ,res) {
         user = req.session.username;
         const keywords = req.query.q
         const query = "SELECT * FROM articles A WHERE draft=0 AND (title like CONCAT('%',?, '%') OR content like CONCAT('%',?, '%')) AND content NOT like CONCAT('%```',?, '%') ORDER BY created_at DESC"
-        sequelize.query(query,{
-            replacements: [keywords, keywords, keywords],
-            type: sequelize.QueryTypes.SELECT
-        }).then(postsData => {
-            // 將 postsData(array) 中的文章轉成 markdown
-            const posts = markedAndMomentFormat(postsData)
-            res.render('searchResult', {
-                user,
-                posts,
-                keywords,
-                count: posts.length,
-                title: 'Search Blog'
-            })
-        }).catch(err => console.error(err.stack))
+        if(keywords) {
+            sequelize.query(query,{
+                replacements: [keywords, keywords, keywords],
+                type: sequelize.QueryTypes.SELECT
+            }).then(postsData => {
+                // 將 postsData(array) 中的文章轉成 markdown
+                const posts = markedAndMomentFormat(postsData)
+                res.render('searchResult', {
+                    user,
+                    posts,
+                    keywords,
+                    count: posts.length,
+                    title: 'Search Blog'
+                })
+            }).catch(err => console.error(err.stack))
+        } else {
+            res.redirect('back')
+        }
     }
 
 } //module.exports end
