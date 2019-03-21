@@ -141,6 +141,15 @@ a:hover {
   padding: .75rem .75rem;
 }
 
+.blog__footer > p, .blog__footer > p > a {
+  font-size: .8rem;
+  color: gray;
+}
+
+.blog__footer > p > a:hover {
+  color: #0056b3;
+}
+
 mark {
   padding: 1px 2px;
   background-color: gold!important;
