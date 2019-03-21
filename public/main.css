@@ -57,6 +57,9 @@ header > h2 {
 article > .post__content > p {
   white-space: pre-line;
 }
+.post__content {
+  line-height: 1.5rem;
+}
 /* .post__title {
   margin-top: 20px;
 } */
@@ -73,8 +76,21 @@ img {
 }
 
 .post__body {
-  max-height: 650px;
+  max-height: 32rem;
   overflow: hidden;
+  position: relative; 
+}
+.more__footer {
+  margin-top: 3rem;
+  padding-left: .5rem;
+}
+.more__footer:before {
+  bottom: 2rem;
+  content: '...';
+  position: absolute;
+  left: 1.4rem;
+  width: 90%;
+  height: 2rem;
 }
 
 .box_shadow {
