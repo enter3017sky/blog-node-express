@@ -3,7 +3,7 @@ const { Post, Tag, Tax, Comments, sequelize } = require('../models/sequelize')
 const ejs_helpers = require('../public/ejs_helper') 
 
 // markdown
-const { MomentFormat, markedAndMomentFormat } = require('../public/utils')
+const { MomentFormat, markedAndMomentFormat, commentsFormat } = require('../public/utils')
 
 module.exports = {
 
@@ -167,7 +167,7 @@ module.exports = {
                                 article_id: id,
                                 category_id:category_id
                             }).then(data => {
-                                console.log('新增 id: ', data.article_id, '的文章, id: ', data.category_id , '的分類')
+                                console.log('新增 id: ', data.article_id, '的文章, id: ', data.category_id , '的分類。')
                             }).catch( err => console.error(err.stack))
                         })
                 } else  {
@@ -175,7 +175,7 @@ module.exports = {
                         article_id: id,
                         category_id:categoriesUpdateData
                     }).then(data => {
-                        console.log('新增 id: ', data.article_id, '的文章, id: ', data.category_id , '的分類')
+                        console.log('新增 id: ', data.article_id, '的文章, id: ', data.category_id , '的分類。')
                     }).catch(err => console.error(err.stack))
                 }
                 return objectData
@@ -223,16 +223,15 @@ module.exports = {
                 replacements: [id],
                 type: sequelize.QueryTypes.SELECT
             }).then(categories => {
-
-                console.log('這篇文章的分類選項：', categories, 'This is article ID:', id)
-                commentsQuery = "SELECT * FROM comments WHERE article_id = ?";
-
+                console.log('這篇文章的分類選項：', categories, '\nThis is article ID:', id, '\n')
+                commentsQuery = "SELECT * FROM comments WHERE article_id = ? ORDER BY created_at ASC";
                 sequelize.query(commentsQuery,{
                     replacements: [id],
                     type: sequelize.QueryTypes.SELECT,
                     rew: true
-                }).then(comments => {
-                    comment = req.session.comment
+                }).then(commentsData => {
+                    commentator = req.session.commentator
+                    const commentsFormated = commentsFormat(commentsData)
                     const mdPost = markedAndMomentFormat(post)
                     const time =  mdPost.created_at
                     const content = mdPost.content
@@ -244,8 +243,8 @@ module.exports = {
                         title: post.title,
                         time: time,
                         postState: post.draft,
-                        comments,
-                        comment
+                        comments: commentsFormated,
+                        comment: commentator
                     })
                 }).catch(err => console.error(err.stack))
             }).catch(err => console.error(err.stack))
@@ -254,20 +253,20 @@ module.exports = {
 
     /** 處理文章底下的留言 */
     comments: function(req, res) {
-        comment = req.session.comment
-        if(comment) { // 留言者已有暱稱，將 insert 的資料 name 換成使用者輸入的
+        commentator = req.session.commentator
+        if(commentator) { // 留言者已有暱稱，將 insert 的資料 name 換成使用者輸入的
             Comments.create({
-                name: comment,
+                name: commentator,
                 content: req.body.content,
                 article_id: req.body.article_id
             }).then(CommentsData => {
-                req.session.comment = CommentsData.name
+                req.session.commentator = CommentsData.name
                 res.redirect('back')
             }).catch(err => console.error(err.stack));
         } else {
             Comments.create(req.body).then(CommentsData => {
-                req.session.comment = CommentsData.name // 留言者暱稱存入 session
-                comment = req.session.comment
+                req.session.commentator = CommentsData.name // 留言者暱稱存入 session
+                commentator = req.session.commentator
                 res.redirect('back') // 重新導向回原本的地方
             }).catch(err => console.error(err.stack));
         }

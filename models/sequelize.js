@@ -18,11 +18,12 @@ const sequelize = new Sequelize(configure.dbName, configure.username, configure.
     host: configure.host,
     dialect: 'mysql',
     operatorsAliases: false,
-    // logging: false,
+    logging: false,
     define: {
         timestamps: false, 
         underscored: true /** createdAt: 'created_at':用底線 ex. articles_id , 不用駝峰命名 articlesId */
-    }
+    },
+    timezone: '+08:00'
 });
 
 // 使用者

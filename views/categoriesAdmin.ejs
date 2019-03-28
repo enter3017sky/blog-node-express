@@ -29,9 +29,9 @@
                 <div class='truncate'>
                     <h3><%= tags[i].name %></h3>
                 </div>
-                <div>
-                    <a href='/category/<%= tags[i].id %>/edit' class='btn btn-outline-secondary'>編輯</a>
-                    <a href='/category/<%= tags[i].id %>/delete' class='btn btn-outline-secondary'>刪除</a>
+                <div class="text-right btn_group">
+                    <a href='/category/<%= tags[i].id %>/edit' class='badge btn btn-outline-success'>編輯</a>
+                    <a href='/category/<%= tags[i].id %>/delete' class='badge btn btn-outline-danger'>刪除</a>
                 </div>
             </li>
 

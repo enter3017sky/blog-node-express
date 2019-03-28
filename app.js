@@ -17,6 +17,8 @@ const postController = require('./controller/post')
 const adminController = require('./controller/admin')
 const tagController = require('./controller/tags')
 
+// const api = require('./controller/api')
+
 app.set('view engine', 'ejs');
 
 app.use(session({
@@ -31,6 +33,7 @@ app.use(session({
 
 app.use(express.static('public'))
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'))
+
 
     /** 首頁 */
 app.get('/', userController.index)

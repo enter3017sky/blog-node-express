@@ -1,7 +1,7 @@
 
 const { Post, sequelize } = require('../models/sequelize')
 
-const { markedAndMomentFormat } = require('../public/utils')
+const { MomentFormat } = require('../public/utils')
 
 module.exports = {
 
@@ -16,7 +16,7 @@ module.exports = {
                 order: [['created_at', 'DESC']],
                 raw: true
             }).then(postsData => {
-                const posts = markedAndMomentFormat(postsData)
+                const posts = MomentFormat(postsData)
                 res.render('archivesAdmin', {
                     posts,
                     user,
