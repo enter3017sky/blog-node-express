@@ -74,9 +74,6 @@ app.get('/posts/:id', postController.posts)
     /** 刪除單篇文章 */
 app.get('/posts/:id/delete', postController.postDelete)
 
-    /** 刪除單篇文章 */
-app.get('/posts/:id/delete', postController.postDelete)
-
     /** 顯示新增文章的畫面 */
 app.get('/posts', postController.newPost)
 
